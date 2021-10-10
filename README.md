@@ -1,5 +1,7 @@
 # Complete Automation Integrating Docker, Github with Jenkins Multibranch CI/CD Pipeline on AWS EC2
 
+![](https://i.imgur.com/Y36pH4c.png)
+
 ## What is CI/CD?
 - CI stands for Continous Integration
 - CD stands for Continous Delivery or Continous Deployment
@@ -100,8 +102,6 @@ Enter same ID if you are going to use my Jenkinsfile from this project or edit t
 Well, Jenkinsfile is the ultimate pipeline file through which Jenkins will automatically detect the whole automation process and follow the steps mentioned in it.<br/><br/>
 Download my [Jenkinsfile](https://github.com/Amsal1/devops_ci_cd/blob/master/Jenkinsfile)<br/>
 
-![](https://i.imgur.com/GWC3pIL.png)
-
 Replace my git repo url with yours throughout the file. Also change UserIdentity block with your GitHub Details in class GitSCM of Code Checkout<br/>
 Push this modified Jenkinsfile to your both branches in your repo. It would be better if you add it in master branch and create dev branch using that but you may only do this on a new repo. For a older repo, you may need to use combinations of few git commands including git reset, git rebase, git checkout and git branch. Text me if you face any diffcuilties😄<br/>
 Also remember, I am using master and dev branch. If you're using any any other branch instead of 'dev' then, make changes accordingly in Jenkinsfile.<br/>
@@ -116,7 +116,3 @@ Select Add Sources->GitHub<br/>
 Select and set Credentials and set your repo name. <br/>
 In my case: ```https://github.com/Amsal1/devops_ci_cd/```<br/>
 Click Save and it will done rest😄<br/>
-
-## Development and Master Branch Docker Website Hosted on AWS EC2:
-Development Branch: http://3.109.212.132:82/index.html<br/>
-Master Branch: http://3.109.212.132:83/index.html
