@@ -28,13 +28,7 @@ pipeline {
 							userRemoteConfigs: [[url: 'https://github.com/Amsal1/devops_ci_cd.git']]						
 						]
 						)
-					} else if (env.BRANCH_NAME == 'dev'){	
-						checkout([
-							$class: 'GitSCM', 
-							branches: [[name: '*/dev']], 
-							userRemoteConfigs: [[url: 'https://github.com/Amsal1/devops_ci_cd.git']]
-							])
-						}
+					} 
 					}
 				}
 		}
@@ -56,21 +50,21 @@ pipeline {
 				sudo docker run -dit -p 83:80 -v /root/git_job_master:/usr/local/apache2/htdocs --name master httpd
 				fi
                 """
-			} else if (env.BRANCH_NAME == 'dev'){
-				sh """
-                sudo rm -rf /root/git_job
-				sudo mkdir /root/git_job
-				sudo cp -rvf . /root/git_job
-				if sudo docker ps|grep dev
-				then
-				sudo docker container stop dev
-				sudo docker rm -f dev
-				sudo docker run -dit -p 82:80 -v /root/git_job:/usr/local/apache2/htdocs --name dev httpd
-				else
-				sudo docker run -dit -p 82:80 -v /root/git_job:/usr/local/apache2/htdocs --name dev httpd
-				fi
-                """
-				} 
+			}//else if (env.BRANCH_NAME == 'dev'){
+				//sh """
+                //sudo rm -rf /root/git_job
+				//sudo mkdir /root/git_job
+				//sudo cp -rvf . /root/git_job
+				//if sudo docker ps|grep dev
+				//then
+				//sudo docker container stop dev
+				//sudo docker rm -f dev
+				//sudo docker run -dit -p 82:80 -v /root/git_job:/usr/local/apache2/htdocs --name dev httpd
+				//else
+				//sudo docker run -dit -p 82:80 -v /root/git_job:/usr/local/apache2/htdocs --name dev httpd
+				//fi
+                //"""
+				} //
 			}
 			}
 		}
@@ -106,7 +100,7 @@ pipeline {
 			script {
 			if (env.BRANCH_NAME == 'master'){
 				withCredentials([usernamePassword(credentialsId: '434b0b23-9deb-4ee6-85d4-43c4c23513bb', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-				sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@https://github.com/thosarshraddha/devops_ci_cd.git')
+				sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@https://github.com/thosarshraddha/centralgit.git')
 					}
 				} else if (env.BRANCH_NAME == 'dev'){
 				build wait: false, job: '../git_job_pipeline/master'
